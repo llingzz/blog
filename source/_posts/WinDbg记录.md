@@ -6,31 +6,31 @@ tags: Windows
 ---
 
 1.查看堆内存
-!heap -s
+`!heap -s`
 2.查看堆内存百分比
-!heap -stat -h 003b0000
+`!heap -stat -h 003b0000`
 3.打印堆内存块
-!heap -stat -h 003b0000 -grp S 1000
+`!heap -stat -h 003b0000 -grp S 1000`
 4.查看大小为0x14内存的地址
-!heap -flt s 14
+`!heap -flt s 14`
 5.查看堆内存申请堆栈 
-!heap -p -a 0x000001ab
+`!heap -p -a 0x000001ab`
 
 6.拉取dump文件
 [windbg]attach进程之后
-.dump /ma C:\Users\xxx\Desktop\dump\1.dmp
+`.dump /ma C:\Users\xxx\Desktop\dump\1.dmp`
 [ntsd.exe]
-ntsd -pv -p PID
-.dump /ma C:\Users\xxx\Desktop\dump\aaa.dmp
+`ntsd -pv -p PID`
+`.dump /ma C:\Users\xxx\Desktop\dump\aaa.dmp`
 
 7.umdh分析内存泄漏
-cd C:\Program Files (x86)\Debugging Tools for Windows (x86)
-set _NT_SYMBOL_PATH=C:\xxx\xxx\xxx\tcbychunksvr;srv*E:\symbol*http://msdl.microsoft.com/download/symbols
-gflags -i TcByChunkSvr.exe +ust
-umdh -pn:TcByChunkSvr.exe -f:d:\1.log
+`cd C:\Program Files (x86)\Debugging Tools for Windows (x86)`
+`set _NT_SYMBOL_PATH=C:\xxx\xxx\xxx\tcbychunksvr;srv*E:\symbol*http://msdl.microsoft.com/download/symbols`
+`gflags -i TcByChunkSvr.exe +ust`
+`umdh -pn:TcByChunkSvr.exe -f:d:\1.log`
 (隔一段时间之后)
-umdh -pn:TcByChunkSvr.exe -f:d:\2.log
-umdh -d D:\Snap1.log D:\Snap2.log -f:d:\result.txt
+`umdh -pn:TcByChunkSvr.exe -f:d:\2.log`
+`umdh -d D:\Snap1.log D:\Snap2.log -f:d:\result.txt`
 
 8.windows死锁相关
 1). ~*kb 查看当前所有线程堆栈，从堆栈中找出可能有锁问题的线程(例如堆栈：ntdll!RtlEnterCriticalSection)
@@ -58,5 +58,5 @@ dt CSocketBuffer 0x000001ab
 db 0x000001ab L0x18 bytes形式打印内存0x000001ab长度为0x18
 
 11.gflags开启页内存堆检测
-gflags.exe –p /enable HttpServer.exe /full
-gflags.exe -p /disable HttpServer.exe
+`gflags.exe –p /enable HttpServer.exe /full`
+`gflags.exe -p /disable HttpServer.exe`
